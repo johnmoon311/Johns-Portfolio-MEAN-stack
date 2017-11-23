@@ -1,0 +1,138 @@
+<!DOCTYPE_html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/site.css' />
+    <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+</head>
+<style>
+	.form-container{
+		text-align: left;
+		display: inline-block;
+		width:850px;
+		padding:0 3%;
+	}
+	form{
+		float:left;
+		width:50%;
+	}
+	input{
+		width:280;
+		height:30px;
+		border-radius: 2px;
+	}
+	textarea{
+		width:380px;
+		height:120px;
+	}
+	form div{
+		margin-top:3%;
+	}
+	label{
+		width:100%;
+		font-size:24px;
+		font-weight: 100;
+	}
+	.error{
+		font-size:14px;
+		color:red;
+		display:none;
+	}
+</style>
+<script>
+	var success = '<%success%>';
+	var page="<% title %>";
+	jQuery(document).ready(function(){
+		if(success == 'true'){
+			jQuery(".form-container").hide();
+			jQuery("#success-message").show();
+		}
+	});
+
+	function ValidateForm(){
+		$("#contact-form button").prop('disabled', true);
+		var n = ValidateInput("name");
+		var e = ValidateInput("email");
+		var c = ValidateInput("company");
+		var q = ValidateInput("question");
+		if((!n || !e || !c || !q))
+		{
+			$("#contact-form button").prop('disabled', false);
+			return;
+		}
+		else{
+			$("#contact-form").submit();
+		}
+
+	}
+	function ValidateInput(id){
+		var val = $("#" + id).val();
+		if(val == "" || val == null){
+			$("." + id).show();
+			return false;
+		}
+		else{
+			$("." + id).hide();
+			return true;
+		}
+	}
+</script>
+<body>
+	<%> layout%>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text-center">
+				 	<h1><% title %></h1>
+				</div>
+			</div>
+		</div>
+	    <div class="row text-center" style="margin:0;">
+	    	<div class="col-md-12">
+	    		<div id="success-message" style="display:none;">
+	    			<h2>You have successfully submitted the form.<br/>I will get back to you as soon as possible.<br/>Thank you!</h2>
+	    		</div>
+		    	<div class="form-container">
+			    	<form id="contact-form" action="/sendemail" method="post">
+			    		<div>
+			    			<label for="name">Name</label>
+			    		    <input type="text" name="name" id="name" required autofocus/>
+			    		    <label class="error name">*Name field is required</label>
+			    		</div>
+			    		<div>
+			    			<label for="email">Email</label>
+			    			<input type="email" name="email" id="email" required/>
+			    			<label class="error email">*Email field is required</label>
+			    		</div>
+			    		<div>
+			    			<label for="company">Company</label>
+			    			<input type="text" name="company" id="company" required/>
+			    			<label class="error company">*Company field is required</label>
+			    		</div>
+			    		<div>
+			    			<label for="question">Question</label>
+			    			<textarea name="question" id="question" required></textarea>
+			    			<label class="error question">*Question field is required</label>
+			    		</div>
+			    		<!-- <input type="submit" class="btn btn-success" value="test"/> -->
+			    		<button class="btn btn-success" style="margin-top:2%;" type="button" 
+			    		onclick="ValidateForm()">Submit</button>
+			    	</form>
+			    	<div style="float:right; margin-top:1%;">
+			    		<h4><b>John Moon</b></h4>
+			    		<p>Phone: (818) 486-5979</p>
+			    		<div>
+			    			<p style="float:left;">Email:</p><a style="float:left; margin-left:5px;"href="mailto:johnmoon1993@gmail.com">johnmoon1993@gmail.com</a>
+			    		</div>
+			    	</div>
+		    	</div>
+	    	</div>
+
+	    </div>
+    </div>
+</body>

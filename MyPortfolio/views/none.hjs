@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/site.css' />
+  <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+</head>
+<style>
+	.project-detail-container{
+		text-align:left;width:700px;display:inline-block;
+	}
+</style>
+
+<body>
+	<%> layout%>
+	<div style="margin-bottom:3%;">
+		<div class="center-container">
+			<h1>I apologize, This Page is Not Complete.</h1>
+		</div>
+	</div>
+</body>
+</html>

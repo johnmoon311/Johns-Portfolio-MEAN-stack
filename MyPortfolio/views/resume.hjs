@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><% title %></title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/site.css' />
+    <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>var page="<% title %>"</script>
+  </head>
+  <body>
+    <%> layout%>
+    <div class="container">
+      <div class="row text-center" style="border-radius:4px; background-color:white;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" >
+          <h1><% title %></h1>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-default btn-success" style="margin-top:9%;" onclick="Javascript:location.href='/files/JohnsResume.doc'">Download</button>
+        </div>
+      </div>
+      <div class="row text-center" style="margin-top:1%;">
+       <div class="col-md-12">
+        <iframe src="/files/JohnsResume.htm" frameborder="0" height="880" width="864" style="border: 2px solid black; padding: 30px; margin-bottom: 3%;"></iframe>
+       </div>
+      </div>
+    </div>
+  </body>
+</html>

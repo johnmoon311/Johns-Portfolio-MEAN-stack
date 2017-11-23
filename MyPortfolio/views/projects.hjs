@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/site.css' />
+  <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<script>
+  var page="<% title %>"
+  var projectApp = angular.module('project-app', []);
+  projectApp.controller('main-controller', ['$scope', '$http', '$sce', function($scope, $http, $sce){
+    $http({
+      method: "GET",
+      url: "/GetProjects"
+    }).then(function(response){
+      $scope.allProject = response.data.my_project;
+      $scope.orderByThis = "project_downloadCount";
+      $scope.languageFilter = "all";
+      $scope.searchFilter = "";
+      $scope.isDesending = true;
+      for(var i in $scope.allProject){
+        var current_date = $scope.allProject[i].project_date.trim().split(' ');        
+        $scope.allProject[i].project_date = new Date(current_date[1], current_date[0], "01");      
+      }
+    });
+    $scope.downloadZip = function(file, id){
+      $("#button-" + id).prop('disabled', true);
+      location.href=file;
+      for(var i in $scope.allProject){
+        if($scope.allProject[i].id == id){
+            $scope.allProject[i].project_downloadCount++;
+            break;
+          }
+      }
+      $http({
+        method:"POST", 
+        url:"/addcount", 
+        data:{'id': id, 'count' : $scope.allProject[i].project_downloadCount}
+      }).then(function(result){
+        if(result != "fail"){
+          $("#button-" + id).prop('disabled', false);
+        }
+      });
+    }
+    $scope.changeSortType = function(){
+      $scope.isDesending = true;
+      jQuery("#up_arrow").css('color', 'gray');
+      jQuery("#down_arrow").css('color', 'black');
+    }
+
+    $scope.changeSortOrder = function(){
+      if($scope.isDesending == true){
+        $scope.isDesending = false;
+        jQuery("#up_arrow").css('color', 'black');
+        jQuery("#down_arrow").css('color', 'gray');
+      }
+      else{
+        $scope.isDesending = true;
+        jQuery("#up_arrow").css('color', 'gray');
+        jQuery("#down_arrow").css('color', 'black');
+      }
+
+    }
+  }]);
+</script>
+<style>
+  #changeSortOrderButton{
+    position:relative; 
+    width:27px; 
+    height:35px; 
+    border-radius:3px; 
+    background-color:white;
+  }
+  #up_arrow{
+    position:absolute; 
+    top:0;
+    right:18%; 
+    color:gray;
+  }
+  #down_arrow{
+    position:absolute; 
+    bottom:8.5%;
+    right:18%;
+  }
+  label{
+    margin-bottom:0;
+  }
+  a{
+    font-size:14px;
+  }
+  .project_title{
+    font-size:25px;
+    text-decoration: none;
+    color:black;
+  }
+  p{
+    margin:10px 0;
+  }
+</style>
+  <body style="margin:0 0 3% 0;">
+    <%> layout%>
+    <div class="container" ng-app="project-app" ng-controller="main-controller">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"><% title %></h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" >
+          <div class="row well" style="padding:31px 19px;margin-top:1%;">
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-1" style="padding-top:1%">
+                  <label for="search"><i class="fa fa-search"></i></label>
+                </div>
+                <div class="col-md-6">
+                  <input id="search" class="form-control" ng-model="searchFilter" style="margin:1% 0 0 1%;" placeholder="Search" autofocus>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4" style="padding-top:2%">
+                          <label>Language: </label>
+                        </div>
+                        <div class="col-md-8">
+                          <select class="form-control" ng-model="languageFilter" style="float:left;">
+                            <option value="all">All</option>
+                            <option value="cpp">C++</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                     <div class="row">
+                      <div class="col-md-4">
+                        <label>Sorted By:</label>
+                      </div>
+                      <div class="col-md-8">
+                       <select class="form-control" ng-model="orderByThis" ng-change="changeSortType()">
+                        <option value="project_downloadCount">Most Popular</option>
+                        <option value="project_date">Date</option>
+                       </select>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1">
+                 <div style="float:left;">
+                  <button id="changeSortOrderButton" ng-click="changeSortOrder()">
+                    <i id="up_arrow"class="fa fa-chevron-up"></i>
+                    <i id="down_arrow" class="fa fa-chevron-down"></i>
+                  </button>
+                </div> 
+                </div>
+              </div>
+            </div>      
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div data-ng-repeat="project in allProject | filter:searchFilter | filter:languageFilter | orderBy:orderByThis:isDesending">
+          <div class="col-md-3 well">
+            <div class="row">
+              <div class="col-md-12" style="height:125px;">
+                <img ng-src="{{project.project_image}}" width="125" style="float:left; max-height:125px; margin-top:.5%;"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" style="float:left;">
+                <a style="margin-top:0;" class="project_title" href="{{project.project_detail}}">{{project.project_name}}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" style="margin-bottom:2%;">
+                <p ng-if="orderByThis == 'project_date'">Date: {{project.project_date | date:'MMMM yyyy'}}</p>
+                <p ng-if="orderByThis == 'project_downloadCount'">Download Count: {{project.project_downloadCount}}</p>
+                <p>Author(s): {{project.project_author}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button id="button-{{project.id}}" class="btn btn-success" ng-click="downloadZip(project.project_file, project.id)">Download Zip File</button>
+                <div style="margin-top:7px;">
+                  <a href="{{project.project_detail}}">Details >></a>
+                </div>
+              </div>
+            </div>
+          </div>    
+        </div>  
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

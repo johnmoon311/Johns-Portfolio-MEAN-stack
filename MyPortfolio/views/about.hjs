@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><% title %></title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/site.css' />
+    <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>var page="<% title %>"</script>
+  </head>
+
+	<body>
+    <%> layout%>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1><% title %></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <ul>
+            </div>
+        </div>
+        <div class="row text-left">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h4 style="line-height:200%">Hello! I hope you enjoyed my portfolio. I wrote the back-end with the open source frameworks MongoDB, ExpressJS, AngularJS, and NodeJS (MEAN) stack and runs on Amazon Web Services (AWS). I used bootstrap and custom css for the front-end.</h4>
+            </div>
+        
+        </div>
+    </div>
+  </body>
+</html>

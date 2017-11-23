@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/site.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    
+    
+  </head>
+  <style>
+    .my_form{
+      margin-top:2%;
+      width:290px;
+      height:351px;
+      border: 1px solid black;
+      float:left;
+      margin-right:3%;
+    }
+    .my_form h2{
+      font-size: 24px;
+    }
+    .my_form h3{
+      float:left;
+      font-size:20px;
+      margin:0;
+    }
+    .my_form input{
+      float:right;
+      width:200px;
+    }
+    .my_form div{
+      margin-left:3%;
+      overflow:auto;
+      width:275px;
+      padding:1% 0;
+    }
+    .my_form button{
+      float:right;
+      width:70px;
+    }
+    .align_left{
+      width:1320px;
+      text-align: left;
+      display:inline-block;
+    }
+    .center_title{
+      text-align: center;
+    }
+  </style>
+  <script>
+    function UpdateProject(form, action){
+      console.log(form);
+      jQuery('#' + form + " .action_id").val(action);
+      jQuery('#' + form).submit();
+    }
+    function StringIsNullorEmpty(s){
+      if(s == "" || s == null){
+        return true;
+      }
+      return false;
+    }
+  </script>
+  <body>
+    <%> layout%>
+
+    <div class="center-container">
+      <div class="align_left">
+      
+        <form action="/addproject" method="post" class="my_form">
+        <div class="center_title">
+          <h2>New Project</h2>
+        </div>
+        <div>
+          <h3>Name:</h3>
+          <input name="project_name"/>
+        </div>
+        <div>
+          <h3>Date:</h3>
+          <input name="project_date"/>
+          </div>
+          <div>
+          <h3>Image:</h3>
+          <input name="project_image"/>
+          </div>
+          <div>
+          <h3>Author:</h3>
+          <input name="project_author"/>
+          </div>
+          <div>
+          <h3>File:</h3>
+          <input name="project_file"/>
+          </div>
+          <div>
+            <h3>Code:</h3>
+            <input name="project_language"/>
+          </div>
+          <div>
+          <h3>DL Count:</h3>
+            <input name="project_downloadCount"/ type="number"style="width:50px;float:left;" value=0>
+          </div>
+          <div>
+            <h3>URL:</h3>
+            <input name="project_detail"/>
+          </div>
+          <button class="btn btn-default btn-success" type="submit">Submit</button>
+        </form>
+
+
+
+      
+    <%#project%>
+      <form id="<%id%>" action="/updateproject" class="my_form" method="post">
+        <div class="center_title">
+        <h2><%id%></h2>
+        </div>
+        <input style="display:none;" name="id"/ value="<%id%>">
+        <div>
+        <h3>Name:</h3>
+        <input name="project_name"/ value="<%project_name%>">
+        </div>
+        <div>
+        <h3>Date:</h3>
+        <input name="project_date"/  value="<%project_date%>">
+        </div>
+        <div>
+        <h3>Image:</h3>
+        <input name="project_image"/  value="<%project_image%>">
+        </div>
+        <div>
+        <h3>Author:</h3>
+        <input name="project_author"/ value="<%project_author%>">
+        </div>
+        <div>
+          <h3>File:</h3>
+          <input name="project_file"/ value="<%project_file%>">
+        </div>
+        <div>
+          <h3>Code:</h3>
+          <input name="project_language"/ value="<%project_language%>">
+        </div>
+        <div>
+          <h3>DL Count:</h3>
+          <input name="project_downloadCount"/ type="number" value="<%project_downloadCount%>" style="width:50px;float:left;">
+        </div>
+        <div>
+          <h3>URL:</h3>
+          <input name="project_detail" value="<%project_detail%>"/>
+        </div>
+        <input class="action_id" name="action" style="display:none" value="update"/>
+        <button class="btn-sm btn-success" type="button" onclick="UpdateProject('<%id%>', 'update');">Save</button>
+        <button class="btn-sm btn-danger" type="button" onclick="UpdateProject('<%id%>', 'delete');">Delete</button>
+      </form>
+        <%/project%>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+    

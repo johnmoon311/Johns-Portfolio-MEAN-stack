@@ -1,0 +1,32 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">John's Portfolio</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/resume">Resume</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://www.linkedin.com/in/john-moon-aa325396" target="blank"><i class="fa fa-linkedin-square"></i></a></li>
+    </ul>
+  </div>
+</nav>
+<script>
+  $(document).ready(function(){
+
+    $("nav .nav li").removeClass("active");
+    $("nav .nav li").each(function(){
+      console.log($(this).text());
+      if(page == $(this).text()){
+        $(this).addClass("active");
+        return;
+      }
+    });
+  });
+</script>
+
+

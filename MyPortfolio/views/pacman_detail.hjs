@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/site.css' />
+  <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script>var page="<% title %>"</script>
+</head>
+<body>
+	<%> layout%>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center">Pacman Solver</h1>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<iframe width="750" height="450"src="https://www.youtube.com/embed/ZeYeCAI2SSU" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="row text-left">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<button class="btn btn-success" onclick="window.open('/files/project/Pacman.zip','_blank');">Download Zip File</button>
+			</div>
+		</div>
+		<div class="row text-left">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h2/>Summary</h2>
+				<p>This PacMan AI project was a final for my C++ Data Structures class at Pasadena City College. This project implements a breadth-first pathfinding algorithm. PacMan will track the ghosts and find the best possible route to avoid getting captured.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

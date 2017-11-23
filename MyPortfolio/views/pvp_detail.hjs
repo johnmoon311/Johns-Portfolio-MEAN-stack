@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/site.css' />
+  <link rel='stylesheet' href='/stylesheets/font-awesome.min.css'/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script>var page="<% title %>"</script>
+</head>
+<style>
+	.project-detail-container{
+		text-align:left;width:700px;display:inline-block;
+	}
+</style>
+
+<body>
+	<%> layout%>
+	<div style="margin-bottom:3%;">
+		<div class="center-container">
+			<h1>Predator vs Prey</h1>
+		</div>
+		<div class="center-container">
+			<iframe width="700" height="450" src="https://www.youtube.com/embed/emyjaY0yz8A" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<div class="center-container">
+			<div class="project-detail-container">
+				<button class="btn btn-success" onclick="window.open('/files/project/Pacman.zip','_blank');">Download Zip File</button>
+			</div>
+		</div>
+		<div class="center-container">
+			<div class="project-detail-container">
+				<h2/>Summary</h2>
+				<p>This project was for an intermediate C++ class at Pasadena City College. It is a simmulation that shows the cycle between predators and prey. In the video above, predators are represented as the red boxes and preys are represented as the green boxes. The predator and prey move one space from their current position to the 8 spaces surrounding it. The predator can kill the prey if he lands on the spot the prey is currently positioned. If a prey survives for 3 rounds, it reproduces and a new prey spawns. If a predator does not eat after 3 rounds, they die. If a predator survives for 8 rounds, the predator reproduces and another predator spawns.</p>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
